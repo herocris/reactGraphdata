@@ -1,0 +1,64 @@
+import { Navigate, Route, Routes } from 'react-router';
+import { AuthRoutes } from '../modules/auth/routes/AuthRoutes';
+import { UserRoutes } from '../modules/user/routes/UserRoutes';
+import { useAppDispatch, useAppSelector } from '../hooks/hooks';
+import { RootState } from '../store';
+import { useEffect } from 'react';
+import { checkAuthToken } from '../store/slices/auth';
+import { RoleRoutes } from '../modules/rol/routes/RoleRoutes';
+import { PermissionRoutes } from '../modules/permission/routes/PermissionRoutes';
+import { ActivityRoutes } from '../modules/activity/routes/ActivityRoutes';
+import { Box, CircularProgress } from '@mui/material';
+import { AmmunitionRoutes } from '../modules/ammunition/routes/AmmunitionRoutes';
+import { DrugRoutes } from '../modules/drug/routes/DrugRoutes';
+import { WeaponRoutes } from '../modules/weapon/routes/WeaponRoutes';
+import { DrugPresentationRoutes } from '../modules/drugPresentation/routes/DrugPresentationRoutes';
+import { ConfiscationRoutes } from '../modules/confiscation/routes/ConfiscationRoutes';
+
+
+export const AppRouter = () => {
+    const { status } = useAppSelector((state: RootState) => state.auth);
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        dispatch(checkAuthToken())
+    }, [])
+
+
+
+    if (status === 'checking') {
+        return (
+            <Box
+                sx={{
+                    height: '100vh',
+                    width: '100vw',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}>
+                <CircularProgress size={60} />
+            </Box>
+        )
+    }
+    return (
+        <Routes>
+            {
+                status === 'not-authenticated'
+                    ? <Route path='/auth/*' element={<AuthRoutes />} />
+                    :
+                    <>
+                        <Route path='/user/*' element={<UserRoutes />} />
+                        <Route path='/rol/*' element={<RoleRoutes />} />
+                        <Route path='/permiso/*' element={<PermissionRoutes />} />
+                        <Route path='/actividad/*' element={<ActivityRoutes />} />
+                        <Route path='/ammunition/*' element={<AmmunitionRoutes />} />
+                        <Route path='/drug/*' element={<DrugRoutes />} />
+                        <Route path='/weapon/*' element={<WeaponRoutes />} />
+                        <Route path='/drugPresentation/*' element={<DrugPresentationRoutes />} />
+                        <Route path='/confiscation/*' element={<ConfiscationRoutes />} />
+                        <Route path='/*' element={<Navigate to="/user" />} />
+                    </>
+            }
+            <Route path='/*' element={<Navigate to="/auth/login" />} />
+        </Routes>
+    )
+}

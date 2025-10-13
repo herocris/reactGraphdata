@@ -1,0 +1,61 @@
+
+
+
+import { AddFloatingButton, AlertDialog, EntityList, } from '../../../components';
+import { GrapLayout2 } from '../../../shared/layout/GraphLayout2';
+
+import { DrugFormModal } from '../components/DrugFormModal';
+import { useDrugView } from '../hooks/useDrugView';
+
+export const DrugView = () => {
+  const {
+    DeleteDrug,
+    LoadingEntities,
+    columnsTable,
+    handleOpen,
+    handleOpenDialog,
+    loading,
+    setIdDrug,
+    tableOptions,
+    openDialog,
+    open,
+    drugs,
+    activeDrug,
+    onSaveOrUptdate,
+    modalTitle,
+    titleFormModal,
+    errorMessage
+
+  } = useDrugView()
+  return (
+    <>
+      <GrapLayout2>
+        <EntityList
+          handleOpen={handleOpen}
+          handleOpenDialog={handleOpenDialog}
+          LoadingEntities={LoadingEntities}
+          setIdEntity={setIdDrug}
+          EntityCollection={drugs}
+          tableOptions={tableOptions}
+          loading={loading}
+          columnsTable={columnsTable} />
+        <DrugFormModal
+          open={open}
+          handleOpen={handleOpen}
+          loading={loading}
+          activeDrug={activeDrug}
+          onSaveOrUptdate={onSaveOrUptdate}
+          modalTitle={modalTitle}
+          titleFormModal={titleFormModal}
+          errorMessage={errorMessage} />
+        <AlertDialog
+          title='Borrar'
+          dialogMessage="Deseas borrar la munición?"
+          openDialog={openDialog}
+          DeleteEntity={DeleteDrug}
+          handleOpen={handleOpenDialog} />
+        <AddFloatingButton handleOpen={handleOpen} />
+      </GrapLayout2>
+    </>
+  )
+}

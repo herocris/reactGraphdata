@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { clearActiveDrugPresentation, onSetActiveDrugPresentation, startDeleteDrugPresentation, startLoadingDrugPresentations, startSaveDrugPresentation, startUpdateDrugPresentation } from "../../../store/slices/drugPresentation";
+import { clearActiveDrugPresentation, onSetActiveDrugPresentation} from "../slices";
+import { startDeleteDrugPresentation, startLoadingDrugPresentations, startSaveDrugPresentation, startUpdateDrugPresentation } from "../thunks";
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { RootState } from "../../../store";
 import { DrugPresentation } from "../../../shared/interfaces/sharedInterfaces";

@@ -1,18 +1,14 @@
 import { useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
+import {Box,Modal,Button, TextField, Typography, Zoom} from '@mui/material';
 import Grid from '@mui/material/Grid2';
-import { Button, TextField, Typography, Zoom } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-
 import { DrugFormModalProps } from '../../../shared/interfaces/sharedInterfaces';
 import { SubmitHandler, useForm } from "react-hook-form";
 import { drugSchema } from '../validators';
 import { boxStyleFormModal } from '../../../helpers/boxStyle';
-import { PhotoInput } from '../../../components/PhotoInput';
+import { PhotoInput } from '../../../components';
 
 
 

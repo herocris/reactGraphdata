@@ -1,19 +1,21 @@
 import { Navigate, Route, Routes } from 'react-router';
-import { AuthRoutes } from '../modules/auth/routes/AuthRoutes';
-import { UserRoutes } from '../modules/user/routes/UserRoutes';
+import { AuthRoutes } from '../modules/auth';
+import { UserRoutes } from '../modules/user';
 import { useAppDispatch, useAppSelector } from '../hooks/hooks';
 import { RootState } from '../store';
 import { useEffect } from 'react';
-import { checkAuthToken } from '../store/slices/auth';
-import { RoleRoutes } from '../modules/rol/routes/RoleRoutes';
-import { PermissionRoutes } from '../modules/permission/routes/PermissionRoutes';
-import { ActivityRoutes } from '../modules/activity/routes/ActivityRoutes';
+import { checkAuthToken } from '../modules/auth/thunks';
+import { RoleRoutes } from '../modules/rol';
+import { PermissionRoutes } from '../modules/permission';
 import { Box, CircularProgress } from '@mui/material';
-import { AmmunitionRoutes } from '../modules/ammunition/routes/AmmunitionRoutes';
-import { DrugRoutes } from '../modules/drug/routes/DrugRoutes';
-import { WeaponRoutes } from '../modules/weapon/routes/WeaponRoutes';
-import { DrugPresentationRoutes } from '../modules/drugPresentation/routes/DrugPresentationRoutes';
-import { ConfiscationRoutes } from '../modules/confiscation/routes/ConfiscationRoutes';
+import { AmmunitionRoutes } from '../modules/ammunition';
+import { DrugRoutes } from '../modules/drug';
+import { WeaponRoutes } from '../modules/weapon';
+import { DrugPresentationRoutes } from '../modules/drugPresentation';
+import { ConfiscationRoutes } from '../modules/confiscation';
+import { GraphView } from '../modules/graph';
+import { MapView } from '../modules/map';
+import { ActivityRoutes } from '../modules/activity';
 
 
 export const AppRouter = () => {
@@ -56,6 +58,8 @@ export const AppRouter = () => {
                         <Route path='/drugPresentation/*' element={<DrugPresentationRoutes />} />
                         <Route path='/confiscation/*' element={<ConfiscationRoutes />} />
                         <Route path='/*' element={<Navigate to="/user" />} />
+                        <Route path='/graph' element={<GraphView/>} />
+                        <Route path='/map' element={<MapView/>} />
                     </>
             }
             <Route path='/*' element={<Navigate to="/auth/login" />} />

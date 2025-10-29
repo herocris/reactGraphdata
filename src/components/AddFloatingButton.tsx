@@ -7,9 +7,12 @@ interface AddFloatingButtonProps {
 export const AddFloatingButton = ({ handleOpen }: AddFloatingButtonProps) => {
     return (
         <Box
-            display="flex"
-            justifyContent="end"
-            marginTop={2}
+            sx={{
+                display: "flex",
+                justifyContent: "end",
+                marginTop: 2,
+                width: '100%'
+            }}
         >
             <Fab color="primary" aria-label="add" onClick={handleOpen}>
                 <AddIcon />

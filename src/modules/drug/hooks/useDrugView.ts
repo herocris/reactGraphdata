@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { clearActiveDrug, onSetActiveDrug, startDeleteDrug, startLoadingDrugs, startSaveDrug, startUpdateDrug } from "../../../store/slices/drug";
+import { startDeleteDrug, startLoadingDrugs, startSaveDrug, startUpdateDrug } from "../thunks";
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { RootState } from "../../../store";
 import { Drug } from "../../../shared/interfaces/sharedInterfaces";
+import { clearActiveDrug, onSetActiveDrug } from "../slices";
 
 export const useDrugView = () => {
   const { activeDrug, drugs, tableOptions, loading, errorMessage } = useAppSelector((state: RootState) => state.drug);
@@ -41,7 +42,7 @@ export const useDrugView = () => {
         handleOpen()
       })
     }
-     dispatch(clearActiveDrug())
+    dispatch(clearActiveDrug())
   }
 
   const titleFormModal = () => activeDrug.id === undefined ? setModalTitle('Crear municion') : setModalTitle('Editar municion')

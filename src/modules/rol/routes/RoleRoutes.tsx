@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router';
-import { RoleView } from '../views/RoleView';
+import { RoleView } from '../views';
 
 
 

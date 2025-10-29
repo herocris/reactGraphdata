@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { clearActiveWeapon, onSetActiveWeapon, startDeleteWeapon, startLoadingWeapons, startSaveWeapon, startUpdateWeapon } from "../../../store/slices/weapon";
+import { clearActiveWeapon, onSetActiveWeapon} from "../slices";
+import {startDeleteWeapon, startLoadingWeapons, startSaveWeapon, startUpdateWeapon } from "../thunks";
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { RootState } from "../../../store";
 import { Weapon } from "../../../shared/interfaces/sharedInterfaces";

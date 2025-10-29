@@ -1,16 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { authSlice } from './slices/auth'
-import { userSlice } from './slices/user'
-import { resourceSlice } from './slices/resouce'
-import { roleSlice } from './slices/rol'
-import { permissionSlice } from './slices/permission'
-import { activitySlice } from './slices/activity'
-import { ammunitionSlice } from './slices/ammunition'
-import { drugSlice } from './slices/drug'
-import { weaponSlice } from './slices/weapon'
-import { drugPresentationSlice } from './slices/drugPresentation'
-import { confiscationSlice } from './slices/confiscation'
-
+import { userSlice } from '../modules/user'
+import { drugPresentationSlice } from '../modules/drugPresentation'
+import { confiscationSlice } from '../modules/confiscation'
+import { drugConfiscationSlice } from '../modules/drugConfiscation'
+import { weaponConfiscationSlice } from '../modules/weaponConfiscation'
+import { ammunitionConfiscationSlice } from '../modules/ammunitionConfiscation/slices/ammunitionConfiscationSlice'
+import { activitySlice } from '../modules/activity'
+import { ammunitionSlice } from '../modules/ammunition'
+import { authSlice } from '../modules/auth'
+import { drugSlice } from '../modules/drug'
+import { resourceSlice } from '../modules/resouce'
+import { graphSlice } from '../modules/graph'
+import { mapSlice } from '../modules/map'
+import { roleSlice } from '../modules/rol'
+import { permissionSlice } from '../modules/permission'
+import { weaponSlice } from '../modules/weapon'
 
 export const store = configureStore({
   reducer: {
@@ -25,6 +29,11 @@ export const store = configureStore({
     weapon:weaponSlice.reducer,
     drugPresentation:drugPresentationSlice.reducer,
     confiscation:confiscationSlice.reducer,
+    drugConfiscation:drugConfiscationSlice.reducer,
+    weaponConfiscation:weaponConfiscationSlice.reducer,
+    ammunitionConfiscation:ammunitionConfiscationSlice.reducer,
+    graph:graphSlice.reducer,
+    map:mapSlice.reducer,
   },
 })
 

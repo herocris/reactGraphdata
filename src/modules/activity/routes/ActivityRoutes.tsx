@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router';
-import { ActivityView } from '../views/ActivityView';
+import { ActivityView } from '../views';
 
 
 

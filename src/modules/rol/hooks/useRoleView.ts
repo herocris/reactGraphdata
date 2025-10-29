@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { clearActiveRole, onSetActiveRole, startDeleteRol, startLoadingRoles, startSaveRol, startUpdateRol } from "../../../store/slices/rol";
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
-import { startLoadingPermissions } from "../../../store/slices/resouce";
 import { RootState } from "../../../store";
 import { Role } from "../../../shared/interfaces/sharedInterfaces";
+import { startLoadingPermissions } from "../../resouce/thunks";
+import { clearActiveRole, onSetActiveRole } from "../slices";
+import { startDeleteRol, startLoadingRoles, startSaveRol, startUpdateRol } from "../thunks";
 
 export const useRoleView = () => {
   const { activeRole, roles, tableOptions, loading, errorMessage } = useAppSelector((state: RootState) => state.role);
-  const { permisos } = useAppSelector((state: RootState) => state.resource);
+  const { permisosCollection: permisos } = useAppSelector((state: RootState) => state.resource);
   const dispatch = useAppDispatch();
 
   const [modalTitle, setModalTitle] = useState('')

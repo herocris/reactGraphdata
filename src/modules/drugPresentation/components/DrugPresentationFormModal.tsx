@@ -4,15 +4,13 @@ import Modal from '@mui/material/Modal';
 import Grid from '@mui/material/Grid2';
 import { Button, TextField, Typography, Zoom } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-
 import { DrugPresentationFormModalProps } from '../../../shared/interfaces/sharedInterfaces';
 import { SubmitHandler, useForm } from "react-hook-form";
 import { drugPresentationSchema } from '../validators';
 import { boxStyleFormModal } from '../../../helpers/boxStyle';
-import { PhotoInput } from '../../../components/PhotoInput';
+import { PhotoInput } from '../../../components';
 
 
 

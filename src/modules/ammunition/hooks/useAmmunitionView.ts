@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { clearActiveAmmunition, onSetActiveAmmunition, startDeleteAmmunition, startLoadingAmmunitions, startSaveAmmunition, startUpdateAmmunition } from "../../../store/slices/ammunition";
+import { startDeleteAmmunition, startLoadingAmmunitions, startSaveAmmunition, startUpdateAmmunition } from "../thunks";
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { RootState } from "../../../store";
 import { Ammunition } from "../../../shared/interfaces/sharedInterfaces";
+import { clearActiveAmmunition, onSetActiveAmmunition } from "../slices";
 
 export const useAmmunitionView = () => {
   const { activeAmmunition, ammunitions, tableOptions, loading, errorMessage } = useAppSelector((state: RootState) => state.ammunition);

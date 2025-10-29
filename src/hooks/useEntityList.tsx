@@ -1,26 +1,29 @@
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/DeleteOutlined';
-import { GridColDef, GridActionsCellItem, GridRowId, GridFilterModel, GridPaginationModel, GridSortModel, GridRowParams, GridRenderCellParams, GridTreeNodeWithRender } from '@mui/x-data-grid';
+import { GridColDef, GridActionsCellItem, GridRowId, GridFilterModel, GridPaginationModel, GridSortModel, GridRowParams, GridRenderCellParams, GridTreeNodeWithRender, GridSortDirection } from '@mui/x-data-grid';
 import { Avatar, Box, Tooltip } from '@mui/material';
 import { useCallback, useEffect, useState } from 'react';
 import { useEntityListProps } from '../shared/interfaces/sharedInterfaces';
 import { getEnvVariables } from '../helpers/getEnvVariables';
+import { useLocation, useNavigate } from 'react-router';
 
 
-export const useEntityList = ({ handleOpen, handleOpenDialog, setIdEntity, columnsTable, LoadingEntities, editable = true }: useEntityListProps) => {
+export const useEntityList = ({ handleOpen, handleOpenDialog, setIdEntity, columnsTable, LoadingEntities, editable = true, tableOptions }: useEntityListProps) => {
+    const location = useLocation();
+    const navigate = useNavigate();
     const [filterModel, setFilterModel] = useState<GridFilterModel>({ items: [] });
-    const [sortModel, setSortModel] = useState<GridSortModel>([]);
+    const [sortModel, setSortModel] = useState<GridSortModel>([{field:tableOptions.orderBy,sort:tableOptions.order as GridSortDirection}]);
     const [paginationModel, setPaginationModel] = useState({
-        page: 0,
-        pageSize: 10,
+        page: tableOptions.current_page - 1,
+        pageSize: tableOptions.per_page,
     });
     const handleEditClick = (id: GridRowId) => () => {
-        setIdEntity(id as string)
+        setIdEntity(id as string,'editar')
         handleOpen();
     };
 
     const handleDeleteClick = (id: GridRowId) => () => {
-        setIdEntity(id as string)
+        setIdEntity(id as string,'borrar')
         handleOpenDialog();
     };
 
@@ -40,14 +43,20 @@ export const useEntityList = ({ handleOpen, handleOpenDialog, setIdEntity, colum
 
     useEffect(() => {
         LoadingEntities(paginationModel.page + 1, sortModel[0]?.field || 'identificador', sortModel[0]?.sort || 'asc', paginationModel.pageSize, filterModel.items[0]?.field || '', filterModel.items[0]?.value || '')
-        console.log('cargando usuarios');
+        console.log('cargando colección');
+        //navigate(location.pathname, { replace: true })
     }, [paginationModel, sortModel, filterModel])
+    
+    
+
+    
 
     const actionsColumn: GridColDef = {
         field: 'actions',
         type: 'actions',
         headerName: 'Actions',
-        width: 100,
+        //width: 100,
+        
         cellClassName: 'actions',
         getActions: ({ id }: GridRowParams) => [
             <GridActionsCellItem
@@ -82,7 +91,7 @@ export const useEntityList = ({ handleOpen, handleOpenDialog, setIdEntity, colum
         return {
             field,
             headerName,
-            width: 100,
+            //width: 100,
             sortable: false,
             filterable: false,
             align: "center",
@@ -122,10 +131,15 @@ export const useEntityList = ({ handleOpen, handleOpenDialog, setIdEntity, colum
     };
 
     const simpleColumn = (field: string): GridColDef => {
+        
+        
         return {
             field: field,
             headerName: field,
-            width: field == 'id' ? 50 : 180,
+            //width: field == 'id' ? 50 : 180,
+            flex: 1,
+            //display:'flex'
+            
         }
     }
 

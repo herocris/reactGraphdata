@@ -1,13 +1,9 @@
 import { useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
 import Grid from '@mui/material/Grid2';
-import { Button, TextField, Typography, Zoom } from '@mui/material';
+import { Box, Modal, Button, TextField, Typography, Zoom } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-
 import { Permission, PermissionFormModalProps } from '../../../shared/interfaces/sharedInterfaces';
 import { SubmitHandler, useForm } from "react-hook-form";
 import { permissionSchema } from '../validators';

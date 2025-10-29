@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import { clearActiveUser, onSetActiveUser, startDeleteUser, startLoadingUsers, startSaveUser, startUpdateUser } from "../../../store/slices/user";
+import { clearActiveUser, onSetActiveUser } from "../slices";
+import { startDeleteUser, startLoadingUsers, startSaveUser, startUpdateUser } from "../thunks";
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
-import { startLoadingPermissions, startLoadingRoles } from "../../../store/slices/resouce";
 import { RootState } from "../../../store";
 import { User } from "../../../shared/interfaces/sharedInterfaces";
+import { startLoadingPermissions, startLoadingRoles } from "../../resouce/thunks";
 
 export const useUserView = () => {
   const { activeUser, users, tableOptions, loading, errorMessage } = useAppSelector((state: RootState) => state.user);
-  const { permisos, roles } = useAppSelector((state: RootState) => state.resource);
+  const { permisosCollection: permisos, rolesCollection: roles } = useAppSelector((state: RootState) => state.resource);
   const dispatch = useAppDispatch();
 
   const [titulo, setTitulo] = useState('')

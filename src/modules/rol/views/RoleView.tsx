@@ -2,7 +2,7 @@
 
 
 import { AddFloatingButton, AlertDialog, EntityList, } from '../../../components';
-import { GrapLayout2 } from '../../../shared/layout/GraphLayout2';
+import { GrapLayout } from '../../../shared/layout/GraphLayout';
 
 import { RoleFormModal } from '../components/RoleFormModal';
 import { useRoleView } from '../hooks/useRoleView';
@@ -30,7 +30,7 @@ export const RoleView = () => {
   } = useRoleView()
   return (
     <>
-      <GrapLayout2>
+      <GrapLayout>
         <EntityList
           handleOpen={handleOpen}
           handleOpenDialog={handleOpenDialog}
@@ -57,7 +57,7 @@ export const RoleView = () => {
           DeleteEntity={DeleteRole}
           handleOpen={handleOpenDialog} />
         <AddFloatingButton handleOpen={handleOpen} />
-      </GrapLayout2>
+      </GrapLayout>
     </>
   )
 }

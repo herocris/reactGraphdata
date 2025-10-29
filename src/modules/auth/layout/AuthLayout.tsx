@@ -11,14 +11,13 @@ interface AuthLayoutProps {
 
 export const AuthLayout = ({ children, title = '' }: AuthLayoutProps) => {
     return (
-
         <Grid
             container
             spacing={0}
             direction="column"
             alignItems="center"
             justifyContent="center"
-            sx={{ minHeight: '100vh', backgroundColor: 'primary.main', padding: 4 }}
+            sx={{ minHeight: '100vh', backgroundColor: 'background.paper', padding: 4 }}
         >
             <Grow
                 in={true}
@@ -30,7 +29,7 @@ export const AuthLayout = ({ children, title = '' }: AuthLayoutProps) => {
                     size={{ xs: 12 }}
                     sx={{
                         width: { sm: 450 },
-                        backgroundColor: 'white',
+                        backgroundColor: 'background.default',
                         padding: 3,
                         borderRadius: 2
                     }}>

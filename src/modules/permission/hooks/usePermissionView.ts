@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { clearActivePermission, onSetActivePermission, startDeletePermission, startLoadingPermissions, startSavePermission, startUpdatePermission } from "../../../store/slices/permission";
+import { clearActivePermission, onSetActivePermission } from "../slices";
+import {startDeletePermission, startLoadingPermissions, startSavePermission, startUpdatePermission } from "../thunks";
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { RootState } from "../../../store";
 import { Permission } from "../../../shared/interfaces/sharedInterfaces";

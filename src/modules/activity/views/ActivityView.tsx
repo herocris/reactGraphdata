@@ -1,7 +1,9 @@
 import { EntityList, } from '../../../components';
-import { GrapLayout2 } from '../../../shared/layout/GraphLayout2';
+import { GrapLayout } from '../../../shared/layout/GraphLayout';
+import { useActivityView } from '../hooks';
 
-import { useActivityView } from '../hooks/useActivityView';
+
+
 
 export const ActivityView = () => {
   const {
@@ -14,7 +16,7 @@ export const ActivityView = () => {
   } = useActivityView()
   return (
     <>
-      <GrapLayout2>
+      <GrapLayout>
         <EntityList
           handleOpen={()=>{}}
           handleOpenDialog={()=>{}}
@@ -26,7 +28,7 @@ export const ActivityView = () => {
           columnsTable={columnsTable} 
           editable={false}
           />
-      </GrapLayout2>
+      </GrapLayout>
     </>
   )
 }

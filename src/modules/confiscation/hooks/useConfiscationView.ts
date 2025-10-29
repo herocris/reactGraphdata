@@ -1,22 +1,19 @@
 import { useState } from "react";
-import { clearActiveConfiscation, onSetActiveConfiscation, startDeleteConfiscation, startLoadingConfiscations, startSaveConfiscation, startUpdateConfiscation } from "../../../store/slices/confiscation";
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { RootState } from "../../../store";
 import { Confiscation } from "../../../shared/interfaces/sharedInterfaces";
 import { useNavigate } from "react-router";
+import { clearActiveConfiscation, onSetActiveConfiscation } from "../slices";
+import { startDeleteConfiscation, startLoadingConfiscations, startSaveConfiscation, startUpdateConfiscation } from "../thunks";
 
 export const useConfiscationView = () => {
   const navigate = useNavigate();
   const { activeConfiscation, confiscations, tableOptions, loading, errorMessage } = useAppSelector((state: RootState) => state.confiscation);
   const dispatch = useAppDispatch();
 
-  const [modalTitle, setModalTitle] = useState('')
-  const [open, setOpen] = useState(false);
-
   const newConfication = () => {
     dispatch(clearActiveConfiscation())
-    navigate('/confiscation/createEdit')
-    //setOpen(!open);
+    navigate('/confiscation/create')
   }
 
   const [openDialog, setOpenDialog] = useState(false);
@@ -24,9 +21,17 @@ export const useConfiscationView = () => {
     setOpenDialog(!openDialog);
   }
 
-  const setIdConfiscation = (id: string) => {
-    const confiscation = confiscations.find((row: Confiscation) => row.id === id);
-    dispatch(onSetActiveConfiscation(confiscation as Confiscation))
+  const setIdConfiscation = async (id: string, action: string) => {
+    //console.log('jkjh234lk234');
+    
+    if (action == 'editar') {
+      //await dispatch(startLoadingConfiscation(id));
+      //navigate(`/confiscation/edit/${id}`, { state: { tableOptions: tableOptions } })
+      navigate(`/confiscation/edit/${id}`)
+    } else {
+      const confiscation = confiscations.find((row: Confiscation) => row.id === id);
+      dispatch(onSetActiveConfiscation(confiscation as Confiscation))
+    }
   };
 
   const DeleteConfiscation = async () => {
@@ -48,10 +53,9 @@ export const useConfiscationView = () => {
     dispatch(clearActiveConfiscation())
   }
 
-  const titleFormModal = () => activeConfiscation.id === undefined ? setModalTitle('Crear municion') : setModalTitle('Editar municion')
 
 
-  const LoadingEntities = (
+  const LoadingEntities = async (
     page: number,
     sortBy: string,
     sortType: string,
@@ -59,17 +63,7 @@ export const useConfiscationView = () => {
     filterField: string,
     filterValue: string
   ) => {
-    dispatch(startLoadingConfiscations(page, sortBy, sortType, pageSize, filterField, filterValue))
-  }
-
-  const onSubmitForm = (formState: any) => {
-    if (activeConfiscation.id === undefined) {
-      dispatch(startSaveConfiscation(formState))
-    } else {
-      console.log(activeConfiscation.id);
-      dispatch(startUpdateConfiscation(formState))
-    }
-    dispatch(clearActiveConfiscation())
+    await dispatch(startLoadingConfiscations(page, sortBy, sortType, pageSize, filterField, filterValue))
   }
 
   const columnsTable = [
@@ -79,27 +73,20 @@ export const useConfiscationView = () => {
     "direccion",
     "departamento",
     "municipalidad",
-    "latitud",
-    "longitud"
   ]
 
   return {
     tableOptions,
     loading,
-    open,
     openDialog,
     columnsTable,
     confiscations,
-    activeConfiscation,
-    modalTitle,
     errorMessage,
     newConfication,
     handleOpenDialog,
     setIdConfiscation,
     DeleteConfiscation,
     LoadingEntities,
-    onSubmitForm,
     onSaveOrUptdate,
-    titleFormModal,
   }
 }

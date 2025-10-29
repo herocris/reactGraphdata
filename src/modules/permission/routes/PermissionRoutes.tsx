@@ -1,15 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router';
-import { PermissionView } from '../views/PermissionView';
-
-
-
-
-
+import { PermissionView } from '../views';
 
 export const PermissionRoutes = () => {
-  
-
-
   return (
     <Routes>
       {/* <Route path='user' element={<UserView />} /> */}

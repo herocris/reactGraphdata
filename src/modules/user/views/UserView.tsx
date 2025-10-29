@@ -3,7 +3,7 @@
 import { useUserView } from "../hooks/useUserView";
 import { UserFormModal } from "../components/UserFormModal";
 import { AddFloatingButton, AlertDialog, EntityList, } from '../../../components';
-import { GrapLayout2 } from "../../../shared/layout/GraphLayout2";
+import { GrapLayout } from "../../../shared/layout/GraphLayout";
 
 export const UserView = () => {
   
@@ -29,7 +29,7 @@ export const UserView = () => {
   } = useUserView()
   return (
     <>
-      <GrapLayout2>
+      <GrapLayout>
         <EntityList
           handleOpen={handleOpen}
           handleOpenDialog={handleOpenDialog}
@@ -57,7 +57,7 @@ export const UserView = () => {
           DeleteEntity={DeleteUser}
           handleOpen={handleOpenDialog} />
         <AddFloatingButton handleOpen={handleOpen} />
-      </GrapLayout2>
+      </GrapLayout>
     </>
   )
 }

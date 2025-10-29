@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router';
-import { DrugPresentationView } from '../views/DrugPresentationView';
+import { DrugPresentationView } from '../views';
 
 
 

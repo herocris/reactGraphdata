@@ -2,10 +2,10 @@
 
 
 import { AddFloatingButton, AlertDialog, EntityList, } from '../../../components';
-import { GrapLayout2 } from '../../../shared/layout/GraphLayout2';
+import { GrapLayout } from '../../../shared/layout/GraphLayout';
 
-import { AmmunitionFormModal } from '../components/AmmunitionFormModal';
-import { useAmmunitionView } from '../hooks/useAmmunitionView';
+import { AmmunitionFormModal } from '../components';
+import { useAmmunitionView } from '../hooks';
 
 export const AmmunitionView = () => {
   const {
@@ -29,7 +29,7 @@ export const AmmunitionView = () => {
   } = useAmmunitionView()
   return (
     <>
-      <GrapLayout2>
+      <GrapLayout>
         <EntityList
           handleOpen={handleOpen}
           handleOpenDialog={handleOpenDialog}
@@ -55,7 +55,7 @@ export const AmmunitionView = () => {
           DeleteEntity={DeleteAmmunition}
           handleOpen={handleOpenDialog} />
         <AddFloatingButton handleOpen={handleOpen} />
-      </GrapLayout2>
+      </GrapLayout>
     </>
   )
 }

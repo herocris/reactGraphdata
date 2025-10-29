@@ -2,10 +2,10 @@
 
 
 import { AddFloatingButton, AlertDialog, EntityList, } from '../../../components';
-import { GrapLayout2 } from '../../../shared/layout/GraphLayout2';
+import { GrapLayout } from '../../../shared/layout/GraphLayout';
 
-import { DrugPresentationFormModal } from '../components/DrugPresentationFormModal';
-import { useDrugPresentationView } from '../hooks/useDrugPresentationView';
+import { DrugPresentationFormModal } from '../components';
+import { useDrugPresentationView } from '../hooks';
 
 export const DrugPresentationView = () => {
   const {
@@ -29,7 +29,7 @@ export const DrugPresentationView = () => {
   } = useDrugPresentationView()
   return (
     <>
-      <GrapLayout2>
+      <GrapLayout>
         <EntityList
           handleOpen={handleOpen}
           handleOpenDialog={handleOpenDialog}
@@ -55,7 +55,7 @@ export const DrugPresentationView = () => {
           DeleteEntity={DeleteDrugPresentation}
           handleOpen={handleOpenDialog} />
         <AddFloatingButton handleOpen={handleOpen} />
-      </GrapLayout2>
+      </GrapLayout>
     </>
   )
 }

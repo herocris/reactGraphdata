@@ -1,34 +1,31 @@
 import { useEffect } from 'react';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
 import Grid from '@mui/material/Grid2';
-import { Button, TextField, Typography, Zoom } from '@mui/material';
+import { Box, Modal, Button, TextField, Typography, Zoom } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-
 import { AmmunitionFormModalProps } from '../../../shared/interfaces/sharedInterfaces';
 import { SubmitHandler, useForm } from "react-hook-form";
 import { ammunitionSchema } from '../validators';
 import { boxStyleFormModal } from '../../../helpers/boxStyle';
-import { PhotoInput } from '../../../components/PhotoInput';
+import { PhotoInput } from '../../../components';
 
 
 
 type FormFields = z.infer<typeof ammunitionSchema>;
 export const AmmunitionFormModal = ({ open, handleOpen, loading, onSaveOrUptdate, modalTitle, titleFormModal, activeAmmunition, errorMessage }: AmmunitionFormModalProps) => {
-    const { 
-        register, 
-        handleSubmit, 
-        setError, 
-        formState: { errors, }, 
-        reset, 
-        control 
+    const {
+        register,
+        handleSubmit,
+        setError,
+        formState: { errors, },
+        reset,
+        control
     } = useForm<FormFields>({
-        defaultValues: activeAmmunition, 
+        defaultValues: activeAmmunition,
         resolver: zodResolver(ammunitionSchema)
     });
+    console.log(activeAmmunition);
 
     const onSubmit: SubmitHandler<z.infer<typeof ammunitionSchema>> = async (data) => {
         await onSaveOrUptdate(data)

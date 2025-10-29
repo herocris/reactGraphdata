@@ -1,6 +1,7 @@
-import { startLoadingActivities } from "../../../store/slices/activity";
+
 import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import { RootState } from "../../../store";
+import { startLoadingActivities } from '../thunks';
 
 export const useActivityView = () => {
   const { tableOptions, loading, errorMessage, activities } = useAppSelector((state: RootState) => state.activity);

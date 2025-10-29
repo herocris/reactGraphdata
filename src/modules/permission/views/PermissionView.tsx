@@ -1,11 +1,7 @@
-
-
-
 import { AddFloatingButton, AlertDialog, EntityList, } from '../../../components';
-import { GrapLayout2 } from '../../../shared/layout/GraphLayout2';
-
-import { PermissionFormModal } from '../components/PermissionFormModal';
-import { usePermissionView } from '../hooks/usePermissionView';
+import { GrapLayout } from '../../../shared/layout/GraphLayout';
+import { PermissionFormModal } from '../components';
+import { usePermissionView } from '../hooks';
 
 export const PermissionView = () => {
   const {
@@ -29,7 +25,7 @@ export const PermissionView = () => {
   } = usePermissionView()
   return (
     <>
-      <GrapLayout2>
+      <GrapLayout>
         <EntityList
           handleOpen={handleOpen}
           handleOpenDialog={handleOpenDialog}
@@ -55,7 +51,7 @@ export const PermissionView = () => {
           DeleteEntity={DeletePermission}
           handleOpen={handleOpenDialog} />
         <AddFloatingButton handleOpen={handleOpen} />
-      </GrapLayout2>
+      </GrapLayout>
     </>
   )
 }
